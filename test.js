@@ -1,10 +1,4 @@
-console.log("start");
-
-
-function myfun(){
-  console.log("myfunction")
+function foo() {
+  let x = 2;
+  console.log(x);
 }
-
-
-console.log("end");
-myfun();
