@@ -15,7 +15,6 @@ jobs:
            git config --global user.name "jatt-singh"
            echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
            git add README.md
-           git commit README.md -m 'Re-build'
-           git push origin 
+           git commit README.md -m 'Re-build' 
            cat README.md 
           
