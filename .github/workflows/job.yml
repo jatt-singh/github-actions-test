@@ -12,5 +12,8 @@ jobs:
       - name: Add data in readme file
         run: |
           echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
+          git add README.md
+          git commit README.md -m 'Re-build'
+          git push origin 
           cat README.md 
           
