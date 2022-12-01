@@ -7,14 +7,10 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v1
-      - name: Branch name
+      - name: check Branch name
         run: echo new branch name is ${GITHUB_REF##*/}
       - name: Add data in readme file
         run: |
           echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
-          git config --global user.email "erjattsingh@gmail.com"
-          git config --global user.name "jatt-singh"
-          git commit README.md -m "new commit"
-          git push origin
           cat README.md 
           
