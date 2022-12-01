@@ -16,6 +16,6 @@ jobs:
            echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
            git add README.md
            git commit README.md -m 'Re-build' 
-           git push
+           git push origin HEAD:${GITHUB_REF##*/}
            cat README.md 
           
