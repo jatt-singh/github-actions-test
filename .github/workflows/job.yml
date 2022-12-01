@@ -11,6 +11,7 @@ jobs:
         run: echo new branch name is ${GITHUB_REF##*/}
       - name: Add data in readme file
         run: |
-         echo "new branch name is ${GITHUB_REF##*/}" >> README.md
+         git commit README.md -m  "new branch name is ${GITHUB_REF##*/}"
+       
          cat README.md 
           
