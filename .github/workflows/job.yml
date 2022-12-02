@@ -10,12 +10,7 @@ jobs:
         uses: actions/checkout@v1
       - name: check Branch name
         run: echo new branch name is ${GITHUB_REF##*/}
-        env:
-          name_of_branch: ${GITHUB_REF##*/}
-      - name: Generate data in README file
-        run: |
-         echo  "new branch name is $name_of_branch" >> README.md
-         cat README.md
+     
       - name: Commit files
         run: |
          git config --local user.email "erjattsingh@gmail.com"
