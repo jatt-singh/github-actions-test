@@ -12,14 +12,10 @@ jobs:
         run: echo new branch name is ${GITHUB_REF##*/}
       - name: Generate data in README file
         run:  echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          author_name: jatt-singh
-          author_email: erjattsingh@gmail.com
-          message: 'new commit'
-          add: 'README.md'
-          run: git push origin HEAD:refs/heads/main --force
+         commit_message: Apply changes
+         push_options: --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
