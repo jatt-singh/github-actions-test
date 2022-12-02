@@ -9,8 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v1
       - name: check Branch name and generate data in README file
         run: |
           echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
