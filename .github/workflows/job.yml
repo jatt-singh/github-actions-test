@@ -1,9 +1,7 @@
 name: testing-purpose
 
-on:
-  push:
-    branches:
-      - main
+on: push
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,8 +12,13 @@ jobs:
         run: echo new branch name is ${GITHUB_REF##*/}
       - name: Generate data in README file
         run:  echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
-      - name: Commit and Push new README.md to the repository
-        uses: mikeal/publish-to-github-action@main
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: jatt-singh
+          author_email: erjattsingh@gmail.com
+          message: 'new commit'
+          add: 'README.md'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
