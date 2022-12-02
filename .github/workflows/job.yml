@@ -19,6 +19,7 @@ jobs:
           author_email: erjattsingh@gmail.com
           message: 'new commit'
           add: 'README.md'
+          run: git push origin HEAD:refs/heads/main --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
