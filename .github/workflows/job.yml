@@ -12,7 +12,7 @@ jobs:
       - name: Generate data in README file
         run:  echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
       - name: Commit and Push new README.md to the repository
-        uses: mikeal/publish-to-github-action@main
+        uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
