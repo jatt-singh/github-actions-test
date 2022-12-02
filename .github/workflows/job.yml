@@ -12,11 +12,15 @@ jobs:
         run: echo new branch name is ${GITHUB_REF##*/}
       - name: Generate data in README file
         run:  echo  "new branch name is ${GITHUB_REF##*/}" >> README.md
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit files
+        run: |
+         git config --local user.email "erjattsingh@gmail.com"
+         git config --local user.name "jatt-singh"
+         git commit -a -m "Add changes"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-         commit_message: Apply changes
-         push_options: --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         branch: ${{ github.ref }}
 
           
