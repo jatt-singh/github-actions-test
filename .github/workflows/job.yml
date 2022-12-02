@@ -14,7 +14,7 @@ jobs:
           val=`echo ${GITHUB_REF##*/}`
       - name: Generate data in README file
         run: |
-         echo  "new branch name is $val" >> README.md
+         echo  "new branch name is ${val}" >> README.md
          cat README.md
       - name: Commit files
         run: |
