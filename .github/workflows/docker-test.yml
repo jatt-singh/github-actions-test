@@ -18,13 +18,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Build and push the image to dockerhub
-        uses: docker/build-push-action@v3
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+      - uses: docker/setup-buildx-action@v1
+      - name: Build image for commit
+        uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/testing_by_gitactions:latest
+          tags: ${{ steps.commit.outputs.short }}
+    
       
