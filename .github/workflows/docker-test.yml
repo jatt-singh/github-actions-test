@@ -27,7 +27,7 @@ jobs:
       - name: Build amd push image for commit
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: . 
           push: true
           tags: ${{ steps.commit.outputs.short }}    
       
