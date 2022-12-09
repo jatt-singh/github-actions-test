@@ -1,7 +1,4 @@
 name: Publish Docker image
-
-name: ci
-
 on:
   push:
     branches:
