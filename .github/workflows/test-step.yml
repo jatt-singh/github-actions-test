@@ -43,7 +43,7 @@ jobs:
         run: |
             echo "script is run successfully"
            
-      - name: Run Python script
+      - name: delete hem chart always
         if: ${{ always() }}  
         run: |
             echo "helm chart is deleted"      
