@@ -20,7 +20,7 @@ jobs:
  
       - name: check the Domain is work or not 
         run: |
-          endtime=360   # Set interval (duration) in second
+          endtime=60   # Set interval (duration) in second
           starttime=0   
           while (( starttime < endtime ));
           do    # Loop until interval has elapsed.
@@ -28,7 +28,7 @@ jobs:
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend.sandbox-london-b.fetch-ai.com")
+                      "https://axim-backend.sandbox-london-b.fetch-aicom")
 
           done
           if (( STATUS_CODE == 200 )); then
