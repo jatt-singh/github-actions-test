@@ -1,0 +1,50 @@
+name: (axim-backend) end-to-end tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  end_to_end_test:
+    name: axim Backend test python script end to end
+    runs-on: ubuntu-latest 
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Image Tag
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" 
+ 
+      - name: check the Domain is work or not 
+        run: |
+          endtime=360   # Set interval (duration) in second
+          starttime=0   
+          while (( starttime < endtime ));
+          do    # Loop until interval has elapsed.
+            STATUS_CODE=$(curl \
+                      --output /dev/null \
+                      --silent \
+                      --write-out "%{http_code}" \
+                      "https://axim-backend.sandbox-london-b.fetch-ai.com")
+
+          done
+          if (( STATUS_CODE == 200 )); then
+            echo "website is working"
+          else     
+            echo "Website is down! , got  $STATUS_CODE"
+            exit 1;
+          fi
+
+      - name: Run Python script
+        if: ${{ success() }}  
+        run: |
+            echo "script is run successfully"
+           
+      - name: Run Python script
+        if: ${{ always() }}  
+        run: |
+            echo "helm chart is deleted"      
+   
