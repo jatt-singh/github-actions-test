@@ -25,7 +25,7 @@ jobs:
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend.sandbox-london-b.fetch-ai.com")
+                      "https://axim-backend-testing.sandbox-london-b.fetch-ai.com")
         
           if (( STATUS_CODE == 200 )); then
             echo "website is working"
