@@ -16,21 +16,24 @@ jobs:
 
       - name: Set Image Tag
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" 
- 
-      - name: Sleep for 180 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '180s'
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           
       - name: check the Domain is work or not 
         run: |
-        
-           STATUS_CODE=$(curl \
+           secs=360                         # Set interval (duration) in seconds.
+           endTime=$(( $(date +%s) + secs )) # Calculate end time.
+
+           while [ $(date +%s) -lt $endTime ]; do
+            STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend.sandbox-london-b.fetch-ai.com") 
+                      "https://axim-backend.sandbox-london-b.fetch-ai.com")
+           done
+        
+      - name: check status code
+        if: ${{ success() }}  
+        run: |      
            if (( STATUS_CODE == 200 )); then
             echo "website is working"
            else     
