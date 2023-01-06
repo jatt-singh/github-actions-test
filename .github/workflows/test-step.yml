@@ -21,14 +21,7 @@ jobs:
       - name: check the Domain is work or not 
         run: |
            SECONDS=0
-           while [[ SECONDS -lt 1200 ]] ; do
-            echo $SECONDS
-           done
-           runtime="2 minute"
-           endtime=$(date -ud "$runtime" +%s)
-
-           while [[ $(date -u +%s) -le $endtime ]]
-           do
+           while [[ SECONDS -lt 360 ]] ; do
               STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
