@@ -18,11 +18,15 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" 
  
+      - name: Sleep for 120 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '120s'
+          
       - name: check the Domain is work or not 
         run: |
-           end=$((SECONDS+120))
-           while [ $SECONDS -lt $end ]; do 
-              STATUS_CODE=$(curl \
+        
+           STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
@@ -32,10 +36,7 @@ jobs:
            else     
             echo "Website is down! , got  $STATUS_CODE"
             exit 1;
-           fi
-           
-           done
-         
+           fi      
       - name: Run Python script
         if: ${{ success() }}  
         run: |
