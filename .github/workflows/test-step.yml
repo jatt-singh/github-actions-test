@@ -20,7 +20,7 @@ jobs:
           
       - name: check the Domain is work or not 
         run: |
-           secs=80                       
+           secs=120                       
            endTime=$(( $(date +%s) + secs )) # Calculate end time.
 
            while [ $(date +%s) -lt $endTime ]; do
