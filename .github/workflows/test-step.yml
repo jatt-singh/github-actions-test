@@ -20,8 +20,8 @@ jobs:
  
       - name: check the Domain is work or not 
         run: |
-           SECONDS=0
-           while [[ SECONDS -lt 360 ]] ; do
+           end=$((SECONDS+120))
+           while [ $SECONDS -lt $end ]; do 
               STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
