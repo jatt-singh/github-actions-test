@@ -13,25 +13,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-          
-      - name: Wait for 360 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '60s'
+  
 
       - name: Check The Domain is Work Or Not 
         run: |
-          STATUS_CODE=$(curl \
+         secs=60                         # Set interval (duration) in seconds.
+         endTime=$(( $(date +%s) + secs )) # Calculate end time.
+
+         while [ $(date +%s) -lt $endTime ]; do  # Loop until interval has elapsed.
+           STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
                       "https://axim-backend-testing.sandbox-london-b.fetch-ai.com")
-        
-          if (( STATUS_CODE == 200 )); then
+         done
+         if (( STATUS_CODE == 200 )); then
             echo "website is working"
-          else     
+         else     
             echo "Website is down some error come! , got  $STATUS_CODE"
-          fi
+         fi
           
       - name: Run Python script
         if: ${{ success() }}  
