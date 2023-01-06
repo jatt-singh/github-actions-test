@@ -18,10 +18,10 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" 
  
-      - name: Sleep for 120 seconds
+      - name: Sleep for 180 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '120s'
+          time: '180s'
           
       - name: check the Domain is work or not 
         run: |
@@ -30,7 +30,7 @@ jobs:
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend-testing.sandbox-london-b.fetch-ai.com") 
+                      "https://axim-backend.sandbox-london-b.fetch-ai.com") 
            if (( STATUS_CODE == 200 )); then
             echo "website is working"
            else     
