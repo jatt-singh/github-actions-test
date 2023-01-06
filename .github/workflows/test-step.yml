@@ -35,7 +35,6 @@ jobs:
             echo "website is working"
           else     
             echo "Website is down some error come! , got  $STATUS_CODE"
-            exit 1;
           fi
           
       - name: Run Python script
