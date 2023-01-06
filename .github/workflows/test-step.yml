@@ -26,13 +26,14 @@ jobs:
                       --silent \
                       --write-out "%{http_code}" \
                       "https://axim-backend-testing.sandbox-london-b.fetch-ai.com")
-         done
+         
          if (( STATUS_CODE == 200 )); then
             echo "website is working"
          else     
             echo "Website is down some error come! , got  $STATUS_CODE"
          fi
-          
+         
+         done
       - name: Run Python script
         if: ${{ success() }}  
         run: |
