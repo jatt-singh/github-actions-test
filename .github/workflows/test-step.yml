@@ -20,7 +20,7 @@ jobs:
  
       - name: check the Domain is work or not 
         run: |
-           runtime="1 minute"
+           runtime="2 minute"
            endtime=$(date -ud "$runtime" +%s)
 
            while [[ $(date -u +%s) -le $endtime ]]
@@ -29,7 +29,7 @@ jobs:
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend.sandbox-london-b.fetch-ai.com") 
+                      "https://axim-backend-testing.sandbox-london-b.fetch-ai.com") 
            done
          
            if (( STATUS_CODE == 200 )); then
