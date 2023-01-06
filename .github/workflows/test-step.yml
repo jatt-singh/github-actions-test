@@ -20,23 +20,24 @@ jobs:
  
       - name: check the Domain is work or not 
         run: |
-          endtime=60   # Set interval (duration) in second
-          starttime=0   
-          while (( starttime < endtime ));
-          do    # Loop until interval has elapsed.
-            STATUS_CODE=$(curl \
+           runtime="1 minute"
+           endtime=$(date -ud "$runtime" +%s)
+
+           while [[ $(date -u +%s) -le $endtime ]]
+           do
+              STATUS_CODE=$(curl \
                       --output /dev/null \
                       --silent \
                       --write-out "%{http_code}" \
-                      "https://axim-backend.sandbox-london-b.fetch-aicom")
-
-          done
-          if (( STATUS_CODE == 200 )); then
+                      "https://axim-backend.sandbox-london-b.fetch-ai.com") 
+           done
+         
+           if (( STATUS_CODE == 200 )); then
             echo "website is working"
-          else     
+           else     
             echo "Website is down! , got  $STATUS_CODE"
             exit 1;
-          fi
+           fi
 
       - name: Run Python script
         if: ${{ success() }}  
